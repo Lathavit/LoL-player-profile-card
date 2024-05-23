@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,9 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import liff from '@line/liff';
-import MainPage from './mainpage'; // Import MainPage component
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+    setUsername: (username: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
     const liffId: string = '2005345037-4XjR6xAY';
     const [displayName, setDisplayName] = useState<string>('');
     const [statusMessage, setStatusMessage] = useState<string>('');
@@ -51,6 +53,8 @@ const Navbar: React.FC = () => {
                 setPictureUrl(profileData.pictureUrl);
                 setUserId(profileData.userId);
 
+                setUsername(profileData.displayName); // Pass the displayName to App component
+
                 // Send profile data to the API
                 sendProfileToApi(profileData);
             })
@@ -64,14 +68,20 @@ const Navbar: React.FC = () => {
             liffId,
             withLoginOnExternalBrowser: true,
         })
-            .then(() => {
-                setIsLogin(true);
-                getProfile();
-            })
-            .catch((err) => {
-                console.error('Error during login:', err);
-            });
+        .then(() => {
+            setIsLogin(true);
+            getProfile();
+        })
+        .catch((err) => {
+            console.error('Error during login:', err);
+        });
     };
+
+    useEffect(() => {
+        if (isLogin) {
+            getProfile();
+        }
+    }, [isLogin]);
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -87,9 +97,7 @@ const Navbar: React.FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            RANDOM MENU
-                        </Link>
+                        RANDOM MENU
                     </Typography>
                     {isLogin && (
                         <>
@@ -100,8 +108,8 @@ const Navbar: React.FC = () => {
                                 className="rounded-full"
                                 alt="Profile"
                             />
-                            <div>displayName: {displayName}</div>
-                            <div>userId: {userId}</div>
+                            <div> {displayName}</div>
+                            {/* <div>userId: {userId}</div> */}
                         </>
                     )}
                     {!isLogin && (
@@ -109,7 +117,6 @@ const Navbar: React.FC = () => {
                     )}
                 </Toolbar>
             </AppBar>
-            {isLogin && <MainPage username={displayName} />}
         </Box>
     );
 };

@@ -1,27 +1,21 @@
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import Mainpage from './mainpage';
-import Setting from './setting';
-import Nrandom from './nrandom';
-import Srandom from './selectrandom';
+import Mainpage from './mainpage'; // Ensure correct import path
 
 function App() {
-  // const [count, setCount] = useState(0)
-  const username = "";
+    const [username, setUsername] = useState<string>('');
 
-  return (
-    <>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Mainpage username={username}/>} />
-          <Route path="setting" element={<Setting />} />
-          <Route path="nrandom" element={<Nrandom />} />
-          <Route path="srandom" element={<Srandom />} />
-        </Routes>
-      </div>
-    </>
-  )
+    return (
+        <div className="App">
+            <Navbar setUsername={setUsername} />
+            <Routes>
+                <Route path="/" element={<Mainpage username={username} />} />
+                {/* <Route path="create" element={<ProductCreate />} /> */}
+                {/* <Route path="update/:_id" element={<UserUpdate />} /> */}
+            </Routes>
+        </div>
+    );
 }
 
-export default App
+export default App;
