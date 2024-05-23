@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -63,13 +64,13 @@ const Navbar: React.FC = () => {
             liffId,
             withLoginOnExternalBrowser: true,
         })
-        .then(() => {
-            setIsLogin(true);
-            getProfile();
-        })
-        .catch((err) => {
-            console.error('Error during login:', err);
-        });
+            .then(() => {
+                setIsLogin(true);
+                getProfile();
+            })
+            .catch((err) => {
+                console.error('Error during login:', err);
+            });
     };
 
     return (
@@ -86,7 +87,9 @@ const Navbar: React.FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        RANDOM MENU
+                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            RANDOM MENU
+                        </Link>
                     </Typography>
                     {isLogin && (
                         <>
