@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -8,8 +8,20 @@ import Box from '@mui/material/Box';
 import 'tailwindcss/tailwind.css'; // Import Tailwind CSS
 
 const SwitchPage: React.FC = () => {
-    const [vegetarian, setVegetarian] = React.useState(false);
-    const [islamic, setIslamic] = React.useState(false);
+    const [vegetarian, setVegetarian] = React.useState(
+        localStorage.getItem('vegetarian') === 'true'
+    );
+    const [islamic, setIslamic] = React.useState(
+        localStorage.getItem('islamic') === 'true'
+    );
+
+    useEffect(() => {
+        localStorage.setItem('vegetarian', vegetarian.toString());
+    }, [vegetarian]);
+
+    useEffect(() => {
+        localStorage.setItem('islamic', islamic.toString());
+    }, [islamic]);
 
     const handleVegetarianChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVegetarian(event.target.checked);

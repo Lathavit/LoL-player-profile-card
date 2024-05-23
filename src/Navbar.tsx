@@ -22,6 +22,12 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
     const [userId, setUserId] = useState<string>('');
     const [isLogin, setIsLogin] = useState<boolean>(false);
 
+    const handleButtonClick = () => {
+        // Handle button click logic here
+        // For now, let's just log a message
+        console.log('Button clicked');
+    };
+
     const sendProfileToApi = async (profile: any) => {
         try {
             const response = await fetch('https://your-api-endpoint.com/profile', {
@@ -65,6 +71,12 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
             });
     };
 
+    const logout = () => {
+        liff.logout()
+        setIsLogin(false);
+        window.location.reload()
+    }
+
     const login = () => {
         liff.init({
             liffId,
@@ -95,6 +107,8 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        onClick={handleButtonClick}
+                        component={Link} to="/setting"
                     >
                         <MenuIcon />
                     </IconButton>
@@ -107,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
                         <>
                             <Avatar src={pictureUrl} alt="Profile"  sx={{ marginRight: 2 }}/> {/* ใช้ Avatar แสดงรูปโปรไฟล์ */}
                             <div>{displayName}</div>
-                            {/* <div>userId: {userId}</div> */}
+                            <Button color="inherit" onClick={logout}>Logout</Button>
                         </>
                     )}
                     {!isLogin && (
