@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import liff from '@line/liff';
+import { Avatar, CssBaseline } from '@mui/material';
 
 const App = () => {
-    const liffId = '2004857022-KJMLVyYa';
+    const liffId = '2005345037-4XjR6xAY';
     const [displayName, setDisplayName] = useState<string>('');
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [pictureUrl, setPictureUrl] = useState<string>('');
@@ -49,23 +50,15 @@ const App = () => {
     };
 
     return (
-        <div className="flex justify-center flex-col items-center">
-            {isLogin && (
-                <>
-                    <img src={pictureUrl} width="200px" height="200px" className="rounded-full" alt="Profile" />
-                    <div>displayName: {displayName}</div>
-                    <div>statusMessage: {statusMessage}</div>
-                    <div>userId: {userId}</div>
-                    <button onClick={logout}>Logout</button>
-                </>
-            )}
-            {!isLogin && (
-                <>
-                    <div>Please Login for details.</div>
-                    <button onClick={login}>Login</button>
-                </>
-            )}
+        <React.Fragment>
+        <CssBaseline />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh' }}>
+            <Avatar src={pictureUrl} alt="Profile" sx={{ marginTop: 2, width: 200, height: 200 }} />
+            <div>displayName: {displayName}</div>
+            <div>statusMessage: {statusMessage}</div>
+            <div>userId: {userId}</div>
         </div>
+    </React.Fragment>
     );
 };
 

@@ -82,13 +82,13 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
             liffId,
             withLoginOnExternalBrowser: true,
         })
-        .then(() => {
-            setIsLogin(true);
-            getProfile();
-        })
-        .catch((err) => {
-            console.error('Error during login:', err);
-        });
+            .then(() => {
+                setIsLogin(true);
+                getProfile();
+            })
+            .catch((err) => {
+                console.error('Error during login:', err);
+            });
     };
 
     useEffect(() => {
@@ -113,14 +113,16 @@ const Navbar: React.FC<NavbarProps> = ({ setUsername }) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                             RANDOM MENU
                         </Link>
                     </Typography>
                     {isLogin && (
                         <>
-                            <Avatar src={pictureUrl} alt="Profile"  sx={{ marginRight: 2 }}/> {/* ใช้ Avatar แสดงรูปโปรไฟล์ */}
-                            <div>{displayName}</div>
+                            <Avatar src={pictureUrl} alt="Profile" sx={{ marginRight: 2 }} />
+                            <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <div>{displayName}</div>
+                            </Link>
                             <Button color="inherit" onClick={logout}>Logout</Button>
                         </>
                     )}

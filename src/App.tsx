@@ -5,6 +5,7 @@ import Mainpage from './mainpage';
 import Setting from './setting';
 import Nrandom from './nrandom';
 import Srandom from './selectrandom';
+import Profile from './liff';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -18,6 +19,7 @@ function App() {
           <Route path="setting" element={<Setting />} />
           <Route path="nrandom" element={<Nrandom />} />
           <Route path="srandom" element={<Srandom />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </div>
     </>
