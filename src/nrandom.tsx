@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button, CssBaseline, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 
+declare global {
+    interface Window {
+        liff: any; // Define the type of liff property here
+    }
+}
+
 const WheelComponent = () => {
     const [winner, setWinner] = useState<string | null>(null);
     const [rotating, setRotating] = useState<boolean>(false);
