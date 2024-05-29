@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Mainpage from './mainpage';
-import Setting from './setting';
-import Nrandom from './nrandom';
-import Srandom from './selectrandom';
+import CreateCard from './CreateCard';
+import EditCard from './EditCard';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -15,9 +14,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Mainpage username={username}/>} />
-          <Route path="setting" element={<Setting />} />
-          <Route path="nrandom" element={<Nrandom />} />
-          <Route path="srandom" element={<Srandom />} />
+          <Route path="create" element={<CreateCard />} />
+          <Route path="edit/:_id" element={<EditCard />} />
         </Routes>
       </div>
     </>

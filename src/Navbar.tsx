@@ -11,30 +11,30 @@ import liff from '@line/liff';
 import MainPage from './mainpage'; // Import MainPage component
 
 const Navbar: React.FC = () => {
-    const liffId: string = '2005345037-4XjR6xAY';
+    const liffId: string = '2005456150-JyPVp2Ng';
     const [displayName, setDisplayName] = useState<string>('');
-    const [statusMessage, setStatusMessage] = useState<string>('');
+    // const [statusMessage, setStatusMessage] = useState<string>('');
     const [pictureUrl, setPictureUrl] = useState<string>('');
     const [userId, setUserId] = useState<string>('');
     const [isLogin, setIsLogin] = useState<boolean>(false);
 
-    const sendProfileToApi = async (profile: any) => {
-        try {
-            const response = await fetch('https://your-api-endpoint.com/profile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(profile),
-            });
+    // const sendProfileToApi = async (profile: any) => {
+    //     try {
+    //         const response = await fetch('https://your-api-endpoint.com/profile', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(profile),
+    //         });
 
-            if (!response.ok) {
-                throw new Error('Failed to send profile data');
-            }
-        } catch (error) {
-            console.error('Error sending profile data:', error);
-        }
-    };
+    //         if (!response.ok) {
+    //             throw new Error('Failed to send profile data');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error sending profile data:', error);
+    //     }
+    // };
 
     const getProfile = () => {
         liff.getProfile()
@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
                     userId: pf.userId || '', // Handle possible undefined values
                 };
                 setDisplayName(profileData.displayName);
-                setStatusMessage(profileData.statusMessage);
+                // setStatusMessage(profileData.statusMessage);
                 setPictureUrl(profileData.pictureUrl);
                 setUserId(profileData.userId);
 
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            RANDOM MENU
+                            WIKI
                         </Link>
                     </Typography>
                     {isLogin && (
@@ -100,8 +100,8 @@ const Navbar: React.FC = () => {
                                 className="rounded-full"
                                 alt="Profile"
                             />
-                            <div>displayName: {displayName}</div>
-                            <div>userId: {userId}</div>
+                            <div>{displayName}</div>
+                            <div>{userId}</div>
                         </>
                     )}
                     {!isLogin && (
