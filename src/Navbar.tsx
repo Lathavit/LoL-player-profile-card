@@ -18,23 +18,23 @@ const Navbar: React.FC = () => {
     const [userId, setUserId] = useState<string>('');
     const [isLogin, setIsLogin] = useState<boolean>(false);
 
-    // const sendProfileToApi = async (profile: any) => {
-    //     try {
-    //         const response = await fetch('https://your-api-endpoint.com/profile', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(profile),
-    //         });
+    const sendProfileToApi = async (profile: any) => {
+        try {
+            const response = await fetch('https://your-api-endpoint.com/profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(profile),
+            });
 
-    //         if (!response.ok) {
-    //             throw new Error('Failed to send profile data');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error sending profile data:', error);
-    //     }
-    // };
+            if (!response.ok) {
+                throw new Error('Failed to send profile data');
+            }
+        } catch (error) {
+            console.error('Error sending profile data:', error);
+        }
+    };
 
     const getProfile = () => {
         liff.getProfile()
