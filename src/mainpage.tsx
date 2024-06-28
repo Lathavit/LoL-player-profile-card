@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import CardList from './Cardlist'; // Import CardList component
-import { CardData } from './types'; // Import CardData type
+import { CardData } from './types/types'; // Import CardData type
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';

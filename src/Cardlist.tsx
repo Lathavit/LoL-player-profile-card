@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardData } from './types';
+import { CardData } from './types/types';
 import Card from './Card'; // Import Card component
 import AddCard from './AddCard';
 import { Link } from 'react-router-dom';

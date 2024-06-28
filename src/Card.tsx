@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardData } from './types';
+import { CardData } from './types/types';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
@@ -32,15 +32,12 @@ const Card: React.FC<CardProps> = ({ data, onTagClick, onEdit, onDelete }) => {
     const handleSent = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-    
+
         const raw = JSON.stringify({
-            "pic": data.image,
-            "name": data.name,
-            "tag": data.tag,
-            "desc": data.description,
             "events": [
                 {
                     "type": "flex",
+                    "replyToken": "some_reply_token",  // Add a reply token
                     "altText": "Flex Message",
                     "contents": {
                         "type": "bubble",
@@ -123,7 +120,7 @@ const Card: React.FC<CardProps> = ({ data, onTagClick, onEdit, onDelete }) => {
             body: raw,
         };
     
-        fetch("http://localhost:3000/webhook", requestOptions)
+        fetch("http://localhost:3000/send-message", requestOptions)
             .then((response) => {
                 console.log("Response Status:", response.status);
                 if (!response.ok) {
